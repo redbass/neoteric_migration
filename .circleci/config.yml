@@ -1,0 +1,24 @@
+version: 2
+
+jobs:
+  frontend:
+    docker:
+      - image: circleci/node:8.2.1
+    working_directory: ~/neoteric
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - frontend_build_cache-{{ checksum "package.json" }}
+      - run: .circleci/calculate_tasks_to_run.sh .js
+      - run: .circleci/should_run.sh "npm install"
+      - run: .circleci/should_run.sh "make compile_test"
+      - save_cache:
+          key: frontend_build_cache-{{ checksum "package.json" }}
+          paths:
+            - ~/neoteric/node_modules
+            - ~/neoteric/bower_components
+      - run: .circleci/should_run.sh "make lint_less_changes"
+      - run: .circleci/should_run.sh "make lint_javascript_changes"
+      - run: .circleci/should_run.sh "make karma KARMA_PARAMS=--singleRun"
+      - run: .circleci/should_run.sh "make mocha"

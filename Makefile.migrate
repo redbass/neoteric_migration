@@ -1,6 +1,6 @@
 FILES_TO_PATCH = Gruntfile.js webpack.config.js
 FILES_TO_MIGRATE = bower.json karma.conf.js mocha.config.js package.json $(FILES_TO_PATCH)
-DIRS_TO_MIGRATE = src src-modern pre_built_modules
+DIRS_TO_MIGRATE = src src-modern pre_built_modules test
 
 help:
 	@echo HELP:

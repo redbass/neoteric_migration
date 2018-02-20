@@ -70,7 +70,6 @@ administrate_bootstrap_fonts: dist_administrate node_modules
 	touch $(DIST_ADMINISTRATE_FONT_DIR)
 
 
-
 #### JavaScript #######################################################################################
 compile_js_src_modern: node_modules
 	npm run transpile:production
@@ -82,3 +81,21 @@ compile_js_src: bower_components node_modules compile_js_src_modern
 	node_modules/requirejs/bin/r.js \
 		-o administrate/blueprints/core/static/build.js \
 		out=$(DIST)/main.min.js
+
+#### Tests #############################################################################################
+
+mocha: node_modules
+	npm run mocha:coverage
+	npm run mocha:integration
+
+karma: node_modules compile_js
+	node_modules/karma/bin/karma start $(KARMA_PARAMS)
+
+
+#### Prod / Staging ###################################################################################
+
+build_for_staging:
+	@echo "To be implemente"
+
+build_for_production:
+	@echo "To be implemente"

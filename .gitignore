@@ -1,0 +1,28 @@
+node_modules/
+bower_components/
+build/
+reports/
+.nyc_output/
+
+dist
+
+.idea/*
+**/.DS_Store
+
+# TODO: remove this line
+src/transpiled
+
+# TODO: remove after migration
+src/
+src-modern/
+administrate/
+pre_built_modules/
+test/
+
+bower.json
+Gruntfile.js
+karma.conf.js
+mocha.config.js
+package.json
+package-lock.json
+webpack.config.js
