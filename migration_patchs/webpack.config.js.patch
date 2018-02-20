@@ -1,0 +1,11 @@
+--- webpack.config.js	2018-02-20 17:02:23.000000000 +0000
++++ .tmp/neoteric/webpack.config.js	2018-02-20 16:58:15.000000000 +0000
+@@ -6,7 +6,7 @@
+ module.exports = {
+     entry: ['babel-polyfill', 'whatwg-fetch', './src-modern/main.js'],
+     output: {
+-        path: path.resolve(__dirname, 'src/transpiled'),
++        path: path.resolve(__dirname, 'dist/transpiled'),
+         filename: 'main.js',
+         libraryTarget: 'amd'
+     },

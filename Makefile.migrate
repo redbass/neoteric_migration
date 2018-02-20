@@ -1,0 +1,60 @@
+FILES_TO_PATCH = Gruntfile.js webpack.config.js
+FILES_TO_MIGRATE = bower.json karma.conf.js mocha.config.js package.json $(FILES_TO_PATCH)
+DIRS_TO_MIGRATE = src src-modern pre_built_modules
+
+help:
+	@echo HELP:
+	@echo "  compile - to compile all the project"
+	@echo "  compile_js - to compile JS code"
+	@echo "  compile_style - to compile Style code"
+
+
+#### Migrate ##########################################################################################
+NEOTERIC_GIT='git@github.com:Administrate/neoteric.git'
+TMP_DIR=.tmp
+TMP_NEOTERIC=$(TMP_DIR)/neoteric
+
+migrate: clean clone_neoteric migrate_directories migrate_files
+	rm -rf .tmp
+
+clone_neoteric: clean
+	mkdir $(TMP_DIR)
+	git clone $(NEOTERIC_GIT) $(TMP_NEOTERIC)
+
+clean: clean_files clean_directories
+	rm -rf .tmp
+
+#### Files ############################################################################################
+
+migrate_files: copy_files
+	patch "administrate/blueprints/core/static/build.js" "migration_patchs/build.js.patch"
+	for file in $(FILES_TO_PATCH) ; do \
+        patch $$file migration_patchs/$$file.patch ;\
+    done
+
+copy_files:
+	for file in $(FILES_TO_MIGRATE) ; do \
+        cp -f $(TMP_NEOTERIC)/$$file $$file ;\
+    done
+
+clean_files:
+	for file in $(FILES_TO_MIGRATE) ; do \
+        rm -f $$file ;\
+    done
+
+#### Directories ######################################################################################
+
+migrate_directories: migrate_administrate_directories
+	for dir in $(DIRS_TO_MIGRATE) ; do \
+        cp -rf $(TMP_NEOTERIC)/$$dir/ $$dir/ ;\
+    done
+
+migrate_administrate_directories:
+	mkdir -p administrate/blueprints/core
+	cp -rf $(TMP_NEOTERIC)/administrate/blueprints/core/static administrate/blueprints/core/static
+	cp -rf $(TMP_NEOTERIC)/administrate/blueprints/core/style administrate/blueprints/core/style
+
+clean_directories:
+	for dir in $(DIRS_TO_MIGRATE) administrate ; do \
+        rm -rf $$dir ;\
+    done

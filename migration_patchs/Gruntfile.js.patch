@@ -1,0 +1,29 @@
+--- ../neoteric/Gruntfile.js	2018-02-19 09:45:36.000000000 +0000
++++ Gruntfile.js	2018-02-18 11:12:29.000000000 +0000
+@@ -20,7 +20,7 @@
+             core: {
+                 cwd: 'administrate/blueprints/core/static',
+                 src: getTemplatesGlobList('core'),
+-                dest: 'administrate/blueprints/core/static/templates.tmp.js',
++                dest: 'dist/ng-templates/templates.tmp.js',
+                 options: {
+                     bootstrap: function (module, script) {
+                         return '' +
+@@ -50,7 +50,7 @@
+             rig: {
+                 cwd: 'node_modules/rig/src',
+                 src: '**/*.html',
+-                dest: 'administrate/blueprints/core/static/rig-templates.tmp.js',
++                dest: 'dist/ng-templates/rig-templates.tmp.js',
+                 options: {
+                     bootstrap: function (module, script) {
+                         return '' +
+@@ -80,7 +80,7 @@
+             src: {
+                 cwd: 'src',
+                 src: getTemplatesGlobList('src'),
+-                dest: 'administrate/blueprints/core/static/src-templates.tmp.js',
++                dest: 'dist/ng-templates/src-templates.tmp.js',
+                 options: {
+                     bootstrap: function (module, script) {
+                         return '' +

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd ~/data/projects/neoteric
+rm -rf src/transpiled
+
+npm run transpile:watch &
+fswatch -o src/transpiled | while read MODFILE
+do
+    scp -rp -P 620 src/transpiled lg@dev.administratehq.com:~/neoteric/src/
+    echo "DONE"
+done

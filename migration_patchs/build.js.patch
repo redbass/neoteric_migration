@@ -1,0 +1,30 @@
+--- administrate/blueprints/core/static/build.old.js	2018-02-20 17:09:43.000000000 +0000
++++ administrate/blueprints/core/static/build.js	2018-02-20 18:06:29.000000000 +0000
+@@ -32,12 +32,10 @@
+         'redactor': '3rd_party/redactor/redactor',
+         'rig': '../../../../node_modules/rig/src',
+         'rig/config': 'rig-config',
+-        'rig/templates': 'rig-templates.tmp',
+         'assert': '3rd_party/chai',
+         'selectize': '../../../../bower_components/selectize/dist/js/standalone/selectize',
+         'moment': '../../../../bower_components/moment/min/moment-with-locales',
+         'moment-timezone': '../../../../bower_components/moment-timezone/builds/moment-timezone-with-data',
+-        'templates': 'templates.tmp',
+         'lodash': '../../../../bower_components/lodash/dist/lodash',
+         'fullcalendar': '../../../../bower_components/fullcalendar/dist/fullcalendar',
+         'angular-ui-calendar': '../../../../bower_components/angular-ui-calendar/src/calendar',
+@@ -47,10 +45,12 @@
+         'es6-promise': '../../../../node_modules/es6-promise/dist/es6-promise',
+         'src': '../../../../src',
+         'src/config': 'src-config',
+-        'src/templates': 'src-templates.tmp',
+         'apollo-client': '../../../../pre_built_modules/apollo-client-1.0.4/index',
+         'graphql-tag': '../../../../pre_built_modules/graphql-tag-2.0.0/index',
+         'chosen': '../../../../node_modules/chosen-js/chosen.jquery',
+-        'ng-tags-input': '../../../../bower_components/ng-tags-input/ng-tags-input'
++        'ng-tags-input': '../../../../bower_components/ng-tags-input/ng-tags-input',
++        'src/templates': '../../../../dist/ng-templates/src-templates.tmp',
++        'templates': '../../../../dist/ng-templates/templates.tmp',
++        'rig/templates': '../../../../dist/ng-templates/rig-templates.tmp',
+     }
+ });
